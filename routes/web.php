@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ProductCategoriesController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PurchaseDetailsController;
 use App\Http\Controllers\PurchaseRecieptsController;
@@ -84,7 +85,8 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('pricing', PricingController::class);
 
 
-
+    // profile controller 
+    Route::resource('profile' , ProfileController::class);
 
 
 
