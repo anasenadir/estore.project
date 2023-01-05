@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Company;
+
 if(!function_exists('unit_name')){
     function unit_name(int $unit_id){
         if($unit_id == 1){
@@ -46,5 +48,12 @@ if(!function_exists('purchases_received')){
         }
 
         return "";
+    }
+}
+
+
+if(!function_exists('company')){
+    function company(){
+        return Company::find(1);
     }
 }
