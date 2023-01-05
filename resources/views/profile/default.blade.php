@@ -16,7 +16,8 @@
 @endsection
 @section('content')
 				<!-- row -->
-				<form>
+				<form action="{{route('profile.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row row-sm">
                         <div class="col-lg-5">
                             <div class="card mg-b-20">
@@ -34,20 +35,20 @@
                                             <div role="form">
                                                 <div class="form-group">
                                                     <label for="FullName">شعار الشركة</label>
-                                                    <input type="file" class="dropify" data-height="150" />
+                                                    <input type="file" class="dropify" name="image" data-height="150" />
                                                 </div>
                                             
                                                 <div class="form-group">
                                                     <label for="FullName">عنوان الشركة</label>
-                                                    <input type="text" value="{{auth()->user()->name}}" id="FullName" class="form-control">
+                                                    <input type="text" value="{{auth()->user()->name}}" name="company_name" id="FullName" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="Email">البريد الإلكتروني للشركة</label>
-                                                    <input type="email" value="{{auth()->user()->email}}" id="Email" class="form-control">
+                                                    <input type="email" value="{{auth()->user()->email}}" id="Email" name="company_email" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="phone_num">رقم الهاتف</label>
-                                                    <input type="tel" placeholder="Company Phone Number" id="phone_num" class="form-control">
+                                                    <input type="tel" placeholder="Company Phone Number" id="phone_num" name="company_phone" class="form-control">
                                                 </div>
                                         </div>
                                         </div><!-- main-profile-overview -->
@@ -69,11 +70,11 @@
                                 <div class="card-body" >
                                     <div class="form-group">
                                         <label for="FullName">الإسم</label>
-                                        <input type="text" value="{{auth()->user()->name}}" id="FullName" class="form-control">
+                                        <input type="text" value="{{auth()->user()->name}}" id="FullName" name="admin_name" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="Email">البريد الإلكتروني</label>
-                                        <input type="email" disabled value="{{auth()->user()->email}}" id="Email" class="form-control">
+                                        <input type="email" disabled value="{{auth()->user()->email}}" id="Email" name="admin_email" class="form-control">
                                     </div>
                                     <hr class="mt-4">
                                     <div class="mb-3 p-1 bg-gray-100 text-center border-top border-2">
@@ -81,15 +82,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="Password">كلمة المرور</label>
-                                        <input type="password" placeholder="Your Password" id="Password" class="form-control">
+                                        <input type="password" placeholder="Your Password" id="Password" name="password" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="Password">كلمة مرور جديدة</label>
-                                        <input type="password" placeholder="Your New Password" id="Password" class="form-control">
+                                        <input type="password" placeholder="Your New Password" id="Password" name="new_password" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="RePassword">تأكيد كلمة المرور الجديدة</label>
-                                        <input type="password" placeholder="Confirme Your New Password" id="RePassword" class="form-control">
+                                        <input type="password" placeholder="Confirme Your New Password" id="RePassword" name="c_new_password" class="form-control">
                                     </div>
                                 </div>
                             </div>
