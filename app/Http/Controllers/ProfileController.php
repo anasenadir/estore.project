@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -17,6 +19,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        // return company()->c_address;
+        // return dd(password_verify('12345678'  , auth()->user()->password));
         return View::make('profile.default');
     }
 
@@ -27,7 +31,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('profile.profile');
     }
 
     /**
@@ -38,21 +42,46 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        // return dd($request->file('image'));
-        
-        // $image_path = $request->file('image')->store('image', 'public');
-        // return  $request->file('image')->getRealPath();
-        
-        // return $request->hasFile('image')? 'Yes' : 'no';
-        
-        // return $image_name;
-        // echo  $request->photo->path();
-        // return $image_path;
-        
-        // echo $request->file('image')->getClientOriginalExtension();
-        // return 'no';
 
-        return $this->companyInfo($request , 'image');
+        // return password_verify('12345678' , auth()->user()->password);
+        
+        // return $this->saveCompanyInfo($request , 'image');
+        // 
+        // return $this->saveCompanyInfo($request , 'image') ;
+        return $request;
+
+        
+        switch($this->saveAdminInfo($request)){
+            case 'password_error': 
+                Session::flash('password' , 'the password is not correct');
+                return back();
+            break;
+            case 'c_password_error':
+                Session::flash('c_new_password' , 'Check Confirm Password if it matches your new password');
+                return back();
+            break;
+            case 'save_error':
+                Session::flash('message' , 'لقد حصل خطأ في حفظ البيانات الخاصة بمدير التطبيق');
+                Session::flash('type'  , 'error');
+                return back();
+            break;
+        }
+
+
+        if($this->saveCompanyInfo($request , 'image') === false){
+            Session::flash('message' , 'لقد حصل خطأ في حفظ البيانات الخاصة بالشركة');
+            Session::flash('type'  , 'error');
+            return back();
+        }
+        
+        // if($this->saveAdminInfo($request)  == 'password_error'){
+        //     return $this->saveAdminInfo($request);
+        // }
+
+
+
+        Session::flash('message' , 'the profile has been updated successfuly');
+        return back();
     }
 
     /**
@@ -74,7 +103,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        // return view('pro')
     }
 
     /**
@@ -101,55 +130,44 @@ class ProfileController extends Controller
     }
 
 
-
-    protected function companyInfo(Request $request  , $form_image_name)
+    public function updateProfile()
     {
-        $image_name = $this->imageUploader($request , 'profile' , $form_image_name);
-
-        $company =  Company::select('image_path' , 'address' ,'email' , 'phone' )->where(['id'=>1])->first();
-
-        $company->image_path = $image_name ?? $company->image_path;
-        $company->address    = $request->address ?? $company->address;
-        $company->email      = $request->c_email ?? $company->email;
-        $company->phone      = $request->c_phone ?? $company->phone;
-        
-
-        if($company->save()){
-            Session::flash('message' , 'لقد تم تعديل العميل  بنجاح');
-        }else{
-            Session::flash('message' , 'لقد حصل خطأ في  تعديل العميل');
-        }
-
-
+        return view('profile.profile');
     }
 
 
-    protected function imageUploader(Request $request , string $destination_folder_name ,  string $form_iamge_name )
-    {  
-        if ($request->hasFile($form_iamge_name) && $request->file($form_iamge_name)->isValid())
-        {
-            $this->validate($request, [
-                $form_iamge_name => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:4096',
-            ]);
-            $image_extension =  $request->file($form_iamge_name)-> getClientOriginalExtension();
 
-            // The folder where we will put the images
-            $path  = 'images/' . $destination_folder_name;
-
-            // create a random image name
-            $image_name = Str::random(10) . "." . $image_extension;
-
-
-            $request->file($form_iamge_name)->move($path , $image_name);
-
-            return $image_name;
-        }
-        return null;
-    }
-
-
-    protected function adminInfo(Request $request)
+    protected function saveAdminInfo(Request $request)
     {
+        $admin           = User::find(auth()->user()->id);
+        $request->validate([
+            'admin_name'      => 'required|string|max:30',
+            'password'        => 'string|max:30',
+            'new_password'    => 'string|max:30',
+            'c_new_password'  => 'string|max:30',
+        ]);
+        $admin->name     = $request->admin_name;
 
+
+        $hashed_password = $admin->password;
+        if($request->password != '' &&  $request->new_password != '' && $request->c_new_password != ''){
+            if(!password_verify($request->password, $hashed_password)){
+                return 'password_error';
+            }
+
+            if($request->new_password  !==  $request->c_new_password){
+                return 'c_password_error';
+            }
+
+            $admin->password = Hash::make($request->new_password);
+        } 
+
+
+
+        if(!$admin->save()){
+            return 'save_error';
+        }
+
+        // return true;
     }
 }
