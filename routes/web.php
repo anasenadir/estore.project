@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ProductCategoriesController;
 use App\Http\Controllers\ProductController;
@@ -16,6 +17,7 @@ use App\Models\ProductCategory;
 use App\Models\SeleReciepts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -86,6 +88,25 @@ Route::middleware(['auth'])->group(function(){
 
 
     // profile controller 
+
+    // Route::controller(ProfileController::class)->group(function(){
+    //     Route::get('profile/accountSettings' , 'AccountSettings')->name('accountSettings');
+    // });
+    
+    
+    // Route::prefix('profile')->group(function(){
+    // });
+    Route::prefix('companysettings')->group(function(){
+        Route::get('/' , [CompanyController::class , 'index'])->name('companyinfo');
+        Route::post('/update' , [CompanyController::class , 'update'])->name('updatecompanyinfo');
+    });
+    // Route::get('companysettings'  , []);
+
+
+    
+    Route::prefix('profile' )->group(function(){
+        Route::get('/updateprofile' , [ProfileController::class , 'updateProfile'])->name('updateProfile');
+    });
     Route::resource('profile' , ProfileController::class);
 
 
