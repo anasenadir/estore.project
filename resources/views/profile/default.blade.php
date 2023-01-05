@@ -46,8 +46,8 @@
                                                     <input type="email" value="{{auth()->user()->email}}" id="Email" class="form-control">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="Password">رقم الهاتف</label>
-                                                    <input type="password" placeholder="Your New Password" id="Password" class="form-control">
+                                                    <label for="phone_num">رقم الهاتف</label>
+                                                    <input type="tel" placeholder="Company Phone Number" id="phone_num" class="form-control">
                                                 </div>
                                         </div>
                                         </div><!-- main-profile-overview -->
@@ -75,12 +75,20 @@
                                         <label for="Email">البريد الإلكتروني</label>
                                         <input type="email" disabled value="{{auth()->user()->email}}" id="Email" class="form-control">
                                     </div>
+                                    <hr class="mt-4">
+                                    <div class="mb-3 p-1 bg-gray-100 text-center border-top border-2">
+                                        <h5 class="tx-medium">تغيير كلمة السر</h5>
+                                    </div>
                                     <div class="form-group">
                                         <label for="Password">كلمة المرور</label>
+                                        <input type="password" placeholder="Your Password" id="Password" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Password">كلمة مرور جديدة</label>
                                         <input type="password" placeholder="Your New Password" id="Password" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="RePassword">تأكيد كلمة المرور</label>
+                                        <label for="RePassword">تأكيد كلمة المرور الجديدة</label>
                                         <input type="password" placeholder="Confirme Your New Password" id="RePassword" class="form-control">
                                     </div>
                                 </div>

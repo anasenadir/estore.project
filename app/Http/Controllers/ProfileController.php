@@ -14,7 +14,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return View::make('profile.default');
+        return View::make('profile.settings');
     }
 
     /**

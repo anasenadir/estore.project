@@ -8,9 +8,9 @@ class AppPdf
 {
     // this is the images types that i have becouse evry type has his own path
     // public static string $ImageForDownload = 'download';
-    const ImageForDownload     = 'download';
-    const ImageForSend         = 'send';
-    const ImageForView         = 'view';
+    public const ImageForDownload     = 'download';
+    public const ImageForSend         = 'send';
+    public const ImageForView         = 'view';
 
     public static $pdf ; 
 
