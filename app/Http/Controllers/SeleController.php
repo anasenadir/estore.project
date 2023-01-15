@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -32,7 +33,14 @@ class SeleController extends Controller
         // return auth()->user()->unreadNotifications[0]['data'][''];
         // $sele = Sele::find(2);
         // return $sele->getInvoiceTotal();
-        $seles = Sele::all();
+
+
+        // $seles = Sele::all();
+        // $seles = Sele::with('client' , 'seleRciepts'  ,'details' )->get();
+        
+        $seles = Cache::remember('seles', 120, function () {
+            return Sele::with('client' , 'seleRciepts'  ,'details' )->get();
+        });
         // return implode($seles[0]->created_at , 'T') ;
         // return explode(' ' , $seles[0]->created_at)[0];
 

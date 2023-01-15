@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\supplier;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class SupplierController extends Controller
 {
@@ -17,7 +20,13 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::all();
+        // return User::all();
+        // $suppliers  = Supplier::select('id', 'phone_number' , 'name' ,'name', 'email' , 'address' )->get();
+        // $suppliers = Supplier::all();
+        $suppliers = Cache::remember('suppliers' , 60 , function(){
+            return Supplier::select('id', 'phone_number' , 'name' ,'name', 'email' , 'address' )->get();
+        });
+        // return $suppliers;
         return View::make('suppliers.default')
         ->with('suppliers', $suppliers);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\product;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -19,11 +20,21 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        // $products = Product::all();
+        // $products = Product::with('productCategory')->get();
 
+
+        // return Cache::get('products');
+        // return Product::with('productCategory')->get();
+        
+        $products = Cache::remember('products'  , 60 , function(){
+            return Product::with('productCategory')->get();
+        });
+
+        // return $products;
         // return $products->dd();
         return View::make('product.default')
-            ->with('products' , $products);
+            ->with('products' ,  $products);
     }
 
     /**
