@@ -17,15 +17,20 @@ class CompanyController extends Controller
 
     public function update(Request $request)
     {
-        return $request;
+        // return $request;
+        if($this->saveCompanyInfo($request , 'image')){
+            return redirect()->to('/profile');
+        }
+        
+        return view('profile.settings') ;
     }
 
 
-    protected function saveCompanyInfo(Request $request  , $form_image_name)
+    protected function saveCompanyInfo(Request $request  , $form_image)
     {
 
         // return $request;
-        $image_name = $this->imageUploader($request , 'profile' , $form_image_name);
+        $image_name = $this->imageUploader($request , 'profile' , $form_image);
 
 
         $company =  Company::find(1);
@@ -45,14 +50,14 @@ class CompanyController extends Controller
     }
 
 
-    protected function imageUploader(Request $request , string $destination_folder_name ,  string $form_iamge_name )
+    protected function imageUploader(Request $request , string $destination_folder_name ,  string $form_iamge )
     {  
-        if ($request->hasFile($form_iamge_name) && $request->file($form_iamge_name)->isValid())
+        if ($request->hasFile($form_iamge) && $request->file($form_iamge)->isValid())
         {
             // $this->validate($request, [
             //     $form_iamge_name => 'image|mimes:jpg,png,jpeg,gif,svg|max:4096',
             // ]);
-            $image_extension =  $request->file($form_iamge_name)-> getClientOriginalExtension();
+            $image_extension =  $request->file($form_iamge)-> getClientOriginalExtension();
 
             // The folder where we will put the images
             $path  = 'images/' . $destination_folder_name;
@@ -61,7 +66,7 @@ class CompanyController extends Controller
             $image_name = 'logo' . "." . $image_extension;
 
 
-            $request->file($form_iamge_name)->move($path , $image_name);
+            $request->file($form_iamge)->move($path , $image_name);
 
             return $image_name;
         }
