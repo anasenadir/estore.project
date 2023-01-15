@@ -48,11 +48,8 @@
 						</div>
 					@endif
 				@endif
-				{{-- this is dkfmklnlnjkfgnjnjkng --}}
 				@yield('page-header')
-				{{-- this is dkfmklnlnjkfgnjnjkng --}}
 				@yield('content')
-				@include('layouts.sidebar')
 				@include('layouts.models')
             	@include('layouts.footer')
 				@include('layouts.footer-scripts')	

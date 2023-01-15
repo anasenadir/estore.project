@@ -30,16 +30,20 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes(['register'=>false]);
 // Auth::routes();
 
 
+
+Route::get('/', function () {
+    return view('auth.login');
+})->middleware(['notAuthenticate']);
+
+
 Route::middleware(['auth'])->group(function(){
-    Route::resource('ProductCategories', ProductCategoriesController::class);
+    Route::resource('productCategories', ProductCategoriesController::class);
 
     //product routes========================================
     Route::resource('products', ProductController::class);
@@ -113,7 +117,6 @@ Route::middleware(['auth'])->group(function(){
 
 
 
-    
     Route::get('/{page}' ,[ AdminController::class , 'index']);
 });
 

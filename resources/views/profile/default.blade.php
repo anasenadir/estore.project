@@ -3,6 +3,7 @@
 <!---Internal Fileupload css-->
 <link href="{{URL::asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
 <link href="{{URL::asset('assets/css/fix-image-size.css')}}" rel="stylesheet" type="text/css"/>
+<link href="{{URL::asset('assets/css/custom/profile.css')}}" rel="stylesheet" type="text/css"/>
 @endsection
 @section('page-header')
 				<!-- breadcrumb -->
@@ -25,7 +26,7 @@
                                         <div class="text-center">
                                             <h3 class="">معلومات الشركة</h3>
                                         </div>
-                                        <a href="{{route('companyinfo')}}"  class="text-decoration-underline tx-16 border-bottom px-2 pb-2">تعديل</a>
+                                        <a href="{{route('companyinfo')}}"  class="custom-btn-link">تعديل</a>
                                         {{-- <a href="{{route('accountSettings')}}"  class="text-decoration-underline tx-16 border-bottom px-2 pb-2">تعديل</a> --}}
                                     </div>
                                 </div>
@@ -67,7 +68,7 @@
                                         <div class="text-center">
                                             <h3 class="">معلومات مدير التطبيق</h3>
                                         </div>
-                                        <a href="{{route('updateProfile')}}"  class="text-decoration-underline tx-16 border-bottom px-2 pb-2">تعديل</a>
+                                        <a href="{{route('updateProfile')}}"  class="custom-btn-link">تعديل</a>
                                     </div>
                                 </div>
                                 <hr class="m-0">

@@ -64,6 +64,7 @@
                                                         <td>{{$product->buy_price}}</td>
                                                         <td>{{$product->sell_price}}</td>
                                                         <td>{{unit_name($product->unit)}}</td>
+                                                        {{-- <td>{{$product->unit}}</td> --}}
                                                         <td>{{$product->product_code}}</td>
                                                         <td class="text-center">
                                                             <div class="btn-group dropend">
