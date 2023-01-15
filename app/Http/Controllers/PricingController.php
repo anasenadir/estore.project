@@ -19,12 +19,13 @@ class PricingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function index()
     {
 
-        $pricings = Pricing::all();
+        // $pricings = Pricing::all();
+        $pricings = Pricing::with('prDetials', 'client' )->get();
 
         // return $pricings[0]->prDetials;
         return View::make('pricing.default')

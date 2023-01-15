@@ -27,7 +27,8 @@ class PurchaseController extends Controller
     public function index()
     {
         // return fake()->randomFloat(2 , 500 , 3000);
-        $purchases = Purchase::all();
+        // $purchases = Purchase::all();
+        $purchases = Purchase::with('supplier' , 'details' , 'purchaseReciepts')->get();
         return View::make('purchases.default')
             ->with('purchases'  ,$purchases );
     }
