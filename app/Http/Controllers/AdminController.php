@@ -13,6 +13,7 @@ class AdminController extends Controller
      */
     public function index($id)
     {
+        // dd(config("app")['name']);
         if(view()->exists($id)){
             return view($id);
         }
