@@ -31,13 +31,13 @@ class Sele extends Model
 
     }
 
-    protected function seleReciepts(){
+    public function seleRciepts(){
         return $this->hasMany(SeleReciepts::class , 'sele_id');
     } 
     
     public function totalPaidAmmount(){
         $totalPaidAmmount = 0;
-        foreach($this->seleReciepts as $seleReciept){
+        foreach($this->seleRciepts as $seleReciept){
             $totalPaidAmmount = $totalPaidAmmount + $seleReciept->pyment_amount;
         }
         return $totalPaidAmmount;

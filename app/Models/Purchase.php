@@ -32,7 +32,7 @@ class Purchase extends Model
 
     }
 
-    protected function purchaseReciepts(){
+    public function purchaseReciepts(){
         return $this->hasMany(PurchaseReciepts::class , 'purchase_id');
     } 
     
