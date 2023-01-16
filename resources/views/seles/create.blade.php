@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-فاتورة مبيعات جديدة
+ {{ trans('seles/create.new_invoice_title') }}
 @stop
 @section('css')
 <!--- Internal Select2 css-->
@@ -13,7 +13,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="left-content">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">فاتورة مبيعات جديدة</h2>
+            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{ trans('seles/create.new_invoice_title') }}</h2>
         </div>
     </div>
 </div>
@@ -26,19 +26,19 @@
                     
                     <div class="row m-1 ">
                         <div class="main-content-label mg-b-5">
-                            طريقة الدفع
+                            {{ trans('seles/create.pyment_type') }}
                         </div>
                     </div>
                     <div class="row mt-2  mb-4">
                         <div class="col-lg-3">
                             <label class="rdiobox"><input checked name="pyment_type" type="radio" value="1" @if (isset($request) && $request->pyment_type == 1)
                                 checked
-                            @endif  name='pyment_type'> <span>كاش</span></label>
+                            @endif  name='pyment_type'> <span>{{ trans('seles/create.pyment_type_cash') }}</span></label>
                         </div>
                         <div class="col-lg-3 mg-t-20 mg-lg-t-0">
                             <label class="rdiobox"><input  name="pyment_type" value="2" @if (isset($request) && $request->pyment_type == 2) 
                                 checked
-                            @endif name='pyment_type' type="radio"> <span>شيك</span></label>
+                            @endif name='pyment_type' type="radio"> <span>{{ trans('seles/create.pyment_type_Check') }}</span></label>
                         </div>
                     </div>
 
@@ -47,10 +47,10 @@
                             <div class="form-group mg-b-0">
                                 {{-- <label class="form-label">العميل : <span class="tx-danger">*</span></label> --}}
                                 <div class="main-content-label mg-b-5 mb-2">
-									العميل
+									{{ trans('seles/create.clients') }}
 								</div>
                                 {{-- <input class="form-control" name="lastname" placeholder="Enter lastname" required="" type="text"> --}}
-                                <div class="parsley-select" id="slWrapper">
+                                <div class="parsley-select" >
                                     <select class="form-control select2" name='client_id'  data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="chosse one" required="">
                                         <option label="chosse one">
                                         </option>
@@ -67,16 +67,13 @@
                                     </select>
                                     <div id="slErrorContainer"></div>
                                 </div>
-                                @error('product_unit')
-                                    <div class="alert alert-danger">product unit is importent</div>
-                                @enderror
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group mg-b-0">
                                 {{-- <label class="form-label">المنتجات : <span class="tx-danger">*</span></label> --}}
                                 <div class="main-content-label mg-b-5 mb-2">
-									المنتجات
+									{{ trans('seles/create.products') }}
 								</div>
                                 {{-- <input class="form-control" name="lastname" placeholder="Enter lastname" required="" type="text"> --}}
                                 <div class="parsley-select" id="slWrapper">
@@ -101,9 +98,6 @@
                                     </select>
                                     <div id="slErrorContainer"></div>
                                 </div>
-                                @error('product_unit')
-                                    <div class="alert alert-danger">product unit is importent</div>
-                                @enderror
                             </div>
                         </div>
                     </div>
@@ -112,10 +106,10 @@
                         <table class="table table-bordered mg-b-0 text-md-nowrap">
                             <thead>
                                 <tr>
-                                    <th>إسم المنتج</th>
-                                    <th>الكمية المرادة</th>
-                                    <th>سعر المنتج</th>
-                                    <th>التحكم</th>
+                                    <th>{{ trans('seles/create.product_name') }}</th>
+                                    <th>{{ trans('seles/create.quantity') }}</th>
+                                    <th>{{ trans('seles/create.sele_price') }}</th>
+                                    <th>{{ trans('seles/create.controle') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -135,7 +129,7 @@
                         </table>
                     </div>
                     <div class="row">
-                        <div class="col-12 d-flex justify-content-end"><button class="col-2 btn btn-main-primary pd-x-20 mg-t-10" type="submit">حفظ</button></div>
+                        <div class="col-12 d-flex justify-content-end"><button class="col-2 btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{ trans('seles/create.save_btn') }}</button></div>
                     </div>
                 </div>
             </div>

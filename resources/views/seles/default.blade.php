@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-المبيعات
+{{ trans('seles/default.page_title') }}
 @stop
 
 @section('css')
@@ -17,7 +17,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="left-content">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">المبيعات !</h2>
+            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{ trans('seles/default.seles_title') }}</h2>
         </div>
     </div>
 </div>
@@ -40,7 +40,7 @@
                     <div class="d-flex justify-content-end">
                         <div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
                             <button class="btn btn-secondary btn-block">
-                                <a class="text-decoration-none text-light" href="{{route('seles.create')}}">فاتورة مبيعات جديدة</a>
+                                <a class="text-decoration-none text-light" href="{{route('seles.create')}}">{{ trans('seles/default.add_new_seles_invoice') }}</a>
                             </button>
                         </div>
                     </div>
@@ -50,14 +50,14 @@
                         <table class="table text-md-nowrap" id="example1">
                             <thead>
                                 <tr>
-                                    <th class="wd-15p ">رقم الفاتورة</th>
-                                    <th class="wd-13p ">العميل</th>
-                                    <th class="wd-15p ">التاريخ</th>
-                                    <th class="wd-12p ">عدد الأصناف</th>
-                                    <th class="wd-14p ">إجمالي الفاتورة</th>
-                                    <th class="wd-12p ">حالة الدفع</th>
-                                    <th class="wd-10p ">المدفوع</th>
-                                    <th class="wd-10p ">التحكم</th>
+                                    <th class="wd-15p ">{{ trans('seles/default.invoice_number') }}</th>
+                                    <th class="wd-13p ">{{ trans('seles/default.client_name') }}</th>
+                                    <th class="wd-15p ">{{ trans('seles/default.date') }}</th>
+                                    <th class="wd-12p ">{{ trans('seles/default.product_count') }}</th>
+                                    <th class="wd-14p ">{{ trans('seles/default.invoice_total') }}</th>
+                                    <th class="wd-12p ">{{ trans('seles/default.pyment_status') }}</th>
+                                    <th class="wd-10p ">{{ trans('seles/default.paid_up') }}</th>
+                                    <th class="wd-10p ">{{ trans('seles/default.controle') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
