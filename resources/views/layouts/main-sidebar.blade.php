@@ -22,14 +22,14 @@
 				<ul class="side-menu">
 					<li class="side-item side-item-category">Main</li>
 					<li class="slide">
-						<a class="side-menu__item" href="{{ url('/' . $page='index') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3"/><path d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"/></svg><span class="side-menu__label">الصفحة الرئيسية</span><span class="badge badge-success side-badge">1</span></a>
+						<a class="side-menu__item" href="{{ url('/' . $page='index') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24" ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M5 5h4v6H5zm10 8h4v6h-4zM5 17h4v2H5zM15 5h4v2h-4z" opacity=".3"/><path d="M3 13h8V3H3v10zm2-8h4v6H5V5zm8 16h8V11h-8v10zm2-8h4v6h-4v-6zM13 3v6h8V3h-8zm6 4h-4V5h4v2zM3 21h8v-6H3v6zm2-4h4v2H5v-2z"/></svg><span class="side-menu__label">{{trans('dashbord/sidebar.dashbord')}}</span><span class="badge badge-success side-badge">1</span></a>
 					</li>
-					<li class="side-item side-item-category">معاملات</li>
+					<li class="side-item side-item-category">{{ trans('dashbord/sidebar.transactions_title') }}</li>
 					<li class="slide">
-						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg><span class="side-menu__label">المبيعات</span><i class="angle fe fe-chevron-down"></i></a>
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg><span class="side-menu__label">{{trans('dashbord/sidebar.seles')}}</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='seles/create') }}">إضافة فاتورة مبيعات</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='seles') }}">عرض المبيعات</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='seles/create') }}">{{trans('dashbord/sidebar.create_sele_invoice')}}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='seles') }}">{{trans('dashbord/sidebar.view_seles')}}</a></li>
 						</ul>
 					</li>
 					<li class="slide">
@@ -37,26 +37,26 @@
 							<svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" fill="#000000" width="800px" height="800px" viewBox="0 0 24 24"><path d="M8,3V7H21l-2,7H8v2H18a1,1,0,0,1,0,2H7a1,1,0,0,1-1-1V4H4A1,1,0,0,1,4,2H7A1,1,0,0,1,8,3ZM6,20.5A1.5,1.5,0,1,0,7.5,19,1.5,1.5,0,0,0,6,20.5Zm9,0A1.5,1.5,0,1,0,16.5,19,1.5,1.5,0,0,0,15,20.5Z"/></svg>
 							{{-- <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg> --}}
 							<span class="side-menu__label">
-								المشتريات
+								{{ trans('dashbord/sidebar.purchases') }}
 							</span>
 							<i class="angle fe fe-chevron-down"></i>
 						</a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='purchases/create') }}">إضافة فاتورة مشتريات</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='purchases') }}">عرض المشتريات</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='purchases/create') }}">{{ trans('dashbord/sidebar.create_purchase_invoice') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='purchases') }}">{{ trans('dashbord/sidebar.view_purchases') }}</a></li>
 						</ul>
 					</li>
 					<li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
 							{{-- <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg> --}}
 							<svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon"  viewBox="0 0 24 24"><path d="M18,22a1,1,0,0,0,1-1V8L12,2,5,8V21a1,1,0,0,0,1,1ZM12,7a2,2,0,1,1-2,2A2,2,0,0,1,12,7ZM9,16h2V14h2v2h2v2H13v2H11V18H9Z"/></svg>
-							<span class="side-menu__label">التسعيرات</span><i class="angle fe fe-chevron-down"></i></a>
+							<span class="side-menu__label">{{ trans('dashbord/sidebar.pricings') }}</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='pricing/create') }}">إضافة تسعير جديد</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='pricing') }}">عرض التسعيرات</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='pricing/create') }}">{{ trans('dashbord/sidebar.create_pricing_invoice') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='pricing') }}">{{ trans('dashbord/sidebar.view_pricings') }}</a></li>
 						</ul>
 					</li>
-					<li class="side-item side-item-category">المصروفات</li>
+					<li class="side-item side-item-category">{{ trans('dashbord/sidebar.expences_title') }}</li>
 					<li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
 							{{-- <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3.31 11l2.2 8.01L18.5 19l2.2-8H3.31zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" opacity=".3"/><path d="M22 9h-4.79l-4.38-6.56c-.19-.28-.51-.42-.83-.42s-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1zM12 4.8L14.8 9H9.2L12 4.8zM18.5 19l-12.99.01L3.31 11H20.7l-2.2 8zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg> --}}
@@ -107,21 +107,21 @@
 								</g>
 
 							</svg>
-							<span class="side-menu__label">أنواع المصروفات</span><i class="angle fe fe-chevron-down"></i>
+							<span class="side-menu__label">{{ trans('dashbord/sidebar.expenses_categories') }}</span><i class="angle fe fe-chevron-down"></i>
 						</a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='product-details') }}">إضافة نوع مصروفات جديد</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='products') }}">عرض أنواع المصروفات</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='product-details') }}">{{ trans('dashbord/sidebar.create_expense_category') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='products') }}">{{ trans('dashbord/sidebar.view_expenses_categories') }}</a></li>
 						</ul>
 					</li>
 					<li class="slide">
-						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3.31 11l2.2 8.01L18.5 19l2.2-8H3.31zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" opacity=".3"/><path d="M22 9h-4.79l-4.38-6.56c-.19-.28-.51-.42-.83-.42s-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1zM12 4.8L14.8 9H9.2L12 4.8zM18.5 19l-12.99.01L3.31 11H20.7l-2.2 8zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="side-menu__label">المصروفات اليومية</span><i class="angle fe fe-chevron-down"></i></a>
+						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M3.31 11l2.2 8.01L18.5 19l2.2-8H3.31zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" opacity=".3"/><path d="M22 9h-4.79l-4.38-6.56c-.19-.28-.51-.42-.83-.42s-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1zM12 4.8L14.8 9H9.2L12 4.8zM18.5 19l-12.99.01L3.31 11H20.7l-2.2 8zM12 13c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg><span class="side-menu__label">{{ trans('dashbord/sidebar.daily_expenses') }}</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='products') }}">إضافة مصروف يومي جديد</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='product-details') }}"> عرض المصروفات اليومية </a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='products') }}">{{ trans('dashbord/sidebar.create_daily_expense') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='product-details') }}">{{ trans('dashbord/sidebar.view_daily_expenses') }}</a></li>
 						</ul>
 					</li>
-					<li class="side-item side-item-category">المخزن</li>
+					<li class="side-item side-item-category">{{ trans('dashbord/sidebar.store_title') }}</li>
 					<li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
 							<svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" width="800px" height="800px" viewBox="0 0 48 48">
@@ -139,12 +139,12 @@
 								</g>
 							</g>
 							</svg>
-							<span class="side-menu__label">أصناف المنتجات</span>
+							<span class="side-menu__label">{{ trans('dashbord/sidebar.products_categories') }}</span>
 							<i class="angle fe fe-chevron-down"></i>
 						</a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='productCategories/create') }}">إضافة صنف جديد</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='productCategories') }}">عرض أصناف المنتجات</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='productCategories/create') }}">{{ trans('dashbord/sidebar.create_products_category') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='productCategories') }}">{{ trans('dashbord/sidebar.view_products_categories') }}</a></li>
 						</ul>
 					</li>
 					<li class="slide">
@@ -154,13 +154,13 @@
 						<path d="M192,7.10542736e-15 L384,110.851252 L384,332.553755 L192,443.405007 L1.42108547e-14,332.553755 L1.42108547e-14,110.851252 L192,7.10542736e-15 Z M127.999,206.918 L128,357.189 L170.666667,381.824 L170.666667,231.552 L127.999,206.918 Z M42.6666667,157.653333 L42.6666667,307.920144 L85.333,332.555 L85.333,182.286 L42.6666667,157.653333 Z M275.991,97.759 L150.413,170.595 L192,194.605531 L317.866667,121.936377 L275.991,97.759 Z M192,49.267223 L66.1333333,121.936377 L107.795,145.989 L233.374,73.154 L192,49.267223 Z" id="Combined-Shape">
 						</path>
 						</svg>
-						<span class="side-menu__label">المنتجات</span><i class="angle fe fe-chevron-down"></i></a>
+						<span class="side-menu__label">{{ trans('dashbord/sidebar.products') }}</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='products/create') }}">إضافة منتج</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='products') }}">عرض المنتجات</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='products/create') }}">{{ trans('dashbord/sidebar.create_product') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='products') }}">{{ trans('dashbord/sidebar.view_products') }}</a></li>
 						</ul>
 					</li>
-					<li class="side-item side-item-category">العملاء & الزبائن</li>
+					<li class="side-item side-item-category">{{ trans('dashbord/sidebar.clients_supplier_title') }}</li>
 					<li class="slide">
 						<a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}">
 						<svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="_x32_" viewBox="0 0 512 512" xml:space="preserve">
@@ -179,10 +179,10 @@
 							<rect x="90.911" y="160.23" class="st0" width="25.345" height="11.648"/>
 						</g>
 						</svg>
-						<span class="side-menu__label">الموردين</span><i class="angle fe fe-chevron-down"></i></a>
+						<span class="side-menu__label">{{ trans('dashbord/sidebar.suppliers') }}</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='suppliers/create') }}">إضافة مورد</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='suppliers') }}">عرض الموردين</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='suppliers/create') }}">{{ trans('dashbord/sidebar.create_supplier') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='suppliers') }}">{{ trans('dashbord/sidebar.view_suppliers') }}</a></li>
 						</ul>
 					</li>
 					<li class="slide">
@@ -194,10 +194,10 @@
 								<path class="st0" d="M148.757,127.248l-42.206-30.599c-3.173-2.301-7.618-1.604-9.926,1.583L1.354,229.622   c-2.308,3.18-1.59,7.622,1.583,9.93l42.198,30.605c3.18,2.301,7.621,1.59,9.922-1.59l95.272-131.389   C152.637,133.998,151.929,129.549,148.757,127.248z M120.554,141.92c-3.839,5.293-11.248,6.478-16.544,2.636   c-5.3-3.835-6.481-11.255-2.64-16.54c3.838-5.3,11.248-6.485,16.544-2.642C123.217,129.215,124.389,136.62,120.554,141.92z"/>
 							</g>
 						</svg>
-							<span class="side-menu__label">العملاء</span><i class="angle fe fe-chevron-down"></i></a>
+							<span class="side-menu__label">{{ trans('dashbord/sidebar.clients') }}</span><i class="angle fe fe-chevron-down"></i></a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='clients/create') }}">إضافة عميل</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='clients') }}">عرض عملاء</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='clients/create') }}">{{ trans('dashbord/sidebar.create_client') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='clients') }}">{{ trans('dashbord/sidebar.view_clients') }}</a></li>
 						</ul>
 					</li>
 				</ul>
