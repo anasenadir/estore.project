@@ -14,6 +14,7 @@
 		<style>
 			*{
 				font-family: 'cairo' , sans-serif ;
+				/* direction: rtl !important; */
 			}
 		</style>
 	</head>

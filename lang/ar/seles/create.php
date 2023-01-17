@@ -15,7 +15,17 @@ return [
     'sele_price'        => 'سعر المنتج', 
     'controle'          => 'التحكم',
     'save_btn'          => 'حفظ',
-    //  errors messages
-    'clents_error'      => 'يجب عليك إختيار الزبون ',
-    'products_error'    => 'يجب عليك تحديد المنتجات التي تريد'
+
+
+
+    // messages
+    'products_are_required'     => 'يجب عليك إختيار منتجات لكي تتم عملية التعديل',
+    'creation_success_message'  => 'تم إنشاء الفاتورة  بنجاح',
+    'creation_error_message'    => 'لقد حصل خطأ في  إنشاء الفاتورة',
+    'clents_error'              => 'يجب عليك إختيار الزبون ',
+    'products_error'            => 'يجب عليك تحديد المنتجات التي تريد',
+
+    // deleting messages
+    'deleting_success_message'  => 'لقد تم حذف الفاتورة بنجاح', 
+    'deleting_error_message'    => 'لقد حصل خطأ في  حذف الفاتورة' ,
 ];

@@ -59,8 +59,12 @@ class SeleController extends Controller
      */
     public function create()
     {
-        $clients    = Client::all();
-        $products   = Product::all();
+        $clients    = Cache::remember('clients' , 60 , function(){
+            return Client::all();
+        }) ;
+        $products   = Cache::remember('products' , 60 , function(){
+            return Product::all();
+        }) ;
         return View::make('seles.create')
             ->with('clients' , $clients)
             ->with('products' , $products);
@@ -89,7 +93,7 @@ class SeleController extends Controller
             
 
             if(is_null($request->sele_quantities)){
-                Session::flash('message' , "يجب عليك إختيار منتجات لكي تتم عملية التعديل"  );
+                Session::flash('message' , trans('seles/create.products_are_required')  );
                 Session::flash('type' , 'error');
                 // return Redirect::to('seles/create') ;
                 // $clients    = Client::all();
@@ -109,9 +113,6 @@ class SeleController extends Controller
                 if($request->sele_quantities[$i] > $product->quatity ){
                     Session::flash('message' , "المنتج  " . $product->name ." لا يوجد منه إلى ". $product->quatity."  عينة في المخزن "  );
                     Session::flash('type' , 'error');
-                    // return Redirect::to('seles/create') ;
-
-                    // return $products;
                     return back();
                 }
             }
@@ -129,9 +130,9 @@ class SeleController extends Controller
                     // i have created a trigger called --"decrease_quantity_when_sale_it"--
                     // to decrease the quantity automatically from stock 
                 }
-                Session::flash('message' , 'تم إنشاء الفاتورة  بنجاح');
+                Session::flash('message' , trans('seles/create.creation_success_message'));
             }else{
-                Session::flash('message' , 'لقد حصل خطأ في  إنشاء الفاتورة');
+                Session::flash('message' , trans('seles/create.creation_error_message'));
             }
         }
 
@@ -160,9 +161,14 @@ class SeleController extends Controller
      */
     public function edit(Sele $sele)
     {
+        
         $seleDetails =  SeleDetails::where('sele_id' , $sele->id)->get();
-        $clients    = Client::all();
-        $products   = Product::all();
+        $clients    = Cache::remember('clients' , 60 , function(){
+            return Client::all();
+        }) ;
+        $products   = Cache::remember('products' , 60 , function(){
+            return Product::all();
+        }) ;
 
         $productsID = [];
         foreach($seleDetails as $item){
@@ -201,7 +207,7 @@ class SeleController extends Controller
             
 
             if(is_null($request->sele_quantities)){
-                Session::flash('message' , "يجب عليك إختيار منتجات لكي تتم عملية التعديل"  );
+                Session::flash('message' , trans('seles/edit.products_are_required')  );
                 Session::flash('type' , 'error');
                 // return Redirect::to('seles/create') ;
                 // $clients    = Client::all();
@@ -294,9 +300,9 @@ class SeleController extends Controller
                 // $sele->save();
                 // ===================================================================
                 
-                Session::flash('message' , 'تم تعديل الفاتورة  بنجاح');
+                Session::flash('message' , trans('seles/edit.editing_success_message'));
             }else{
-                Session::flash('message' , 'لقد حصل خطأ في  تعديل الفاتورة');
+                Session::flash('message' , trans('seles/edit.editing_error_message'));
             }
         }
 
@@ -320,9 +326,9 @@ class SeleController extends Controller
         // SeleReciepts::where('sele_id' , $sele->id )->delete();
         // ===================================================
         if($sele->delete()){
-            Session::flash('message' , 'لقد تم حذف الفاتورة بنجاح');
+            Session::flash('message' , trans('seles/create.deleting_success_message'));
         }else{
-            Session::flash('message' , 'لقد حصل خطأ في  حذف الفاتورة');
+            Session::flash('message' , trans('seles/create.deleting_error_message'));
         }
 
         return Redirect::to('seles');

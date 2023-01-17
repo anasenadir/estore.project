@@ -17,6 +17,7 @@ return [
     'save_btn'         => 'Save',
 
     //  errors messages
+    'products_are_required' => 'You must select products in order for the craete invoice process to take place',
     'clents_error'      => 'You have to Choose a Client',
     'products_error'    => 'You have to select a product to complete this operation'
 ];
