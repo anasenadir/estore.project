@@ -82,28 +82,28 @@
                                                     <ul class="dropdown-menu my-drop-down">
                                                         <!-- Dropdown menu links -->
                                                         @if (!$sele->is_client_received)
-                                                            <li><a href="{{route('seles.edit' , $sele->id)}}"><i class="las la-pencil-alt"></i>{{ trans('seles/create.edit_invoice') }}</a></li>
+                                                            <li><a href="{{route('seles.edit' , $sele->id)}}"><i class="las la-pencil-alt"></i>{{ trans('seles/default.edit_invoice') }}</a></li>
                                                         @endif
                                                         @if (!$sele->pyment_status)
                                                             <li>
                                                                 <a href="{{route('selesrecipets.create' , $sele->id)}}">
                                                                 <i class="las la-hand-holding-usd"></i>
-                                                                {{ trans('seles/create.pay_the_bill') }}
+                                                                {{ trans('seles/default.pay_the_bill') }}
                                                                 </a>
                                                             </li>
                                                         @endif
-                                                        <li><a href="{{route('selesrecipets.index', $sele->id)}}"><i class="las la-newspaper"></i>{{ trans('seles/create.paid_off_invoice') }}</a></li>
-                                                        <li><a href="{{route('seleInvoiceDounload', $sele->id)}}"><i class="las la-arrow-alt-circle-down"></i>{{ trans('seles/create.download') }}</a></li>
-                                                        <li><a target='_blanck'href="{{route('viewSeleInvoice', $sele->id)}}"><i class="las la-eye"></i>{{ trans('seles/create.see_the_invoice') }}</a></li>
-                                                        <li><a href="{{route('sendSeleByMail', $sele->id)}}"><i class="las la-paper-plane"></i> {{ trans('seles/create.send_invoice') }}</a></li>
+                                                        <li><a href="{{route('selesrecipets.index', $sele->id)}}"><i class="las la-newspaper"></i>{{ trans('seles/default.paid_off_invoice') }}</a></li>
+                                                        <li><a href="{{route('seleInvoiceDounload', $sele->id)}}"><i class="las la-arrow-alt-circle-down"></i>{{ trans('seles/default.download') }}</a></li>
+                                                        <li><a target='_blanck'href="{{route('viewSeleInvoice', $sele->id)}}"><i class="las la-eye"></i>{{ trans('seles/default.see_the_invoice') }}</a></li>
+                                                        <li><a href="{{route('sendSeleByMail', $sele->id)}}"><i class="las la-paper-plane"></i> {{ trans('seles/default.send_invoice') }}</a></li>
                                                         @if (!$sele->is_client_received)
-                                                            <li><a href="{{route('invoiceTooked', $sele->id)}}"><i class="las la-truck"></i> {{ trans('seles/create.goods_delivered') }}</a></li>
+                                                            <li><a href="{{route('invoiceTooked', $sele->id)}}"><i class="las la-truck"></i> {{ trans('seles/default.goods_delivered') }}</a></li>
                                                             <li>
                                                                 <form action="{{route('seles.destroy' , $sele->id)}}" method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit"  onclick="return confirm('هل تريد حذف هذه الفاتورة')">
-                                                                        <i class="las la-trash-alt"></i>{{ trans('seles/create.delete_invoice') }}
+                                                                        <i class="las la-trash-alt"></i>{{ trans('seles/default.delete_invoice') }}
                                                                     </button>
                                                                 </form>
                                                             </li>

@@ -448,9 +448,9 @@ class SeleController extends Controller
                     // to decrease the quantity automatically from stock 
                 }
 
-                Session::flash('message' , 'تم إنشاء الفاتورة  بنجاح');
+                Session::flash('message' , trans('seles/create.creation_success_message'));
             }else{
-                Session::flash('message' , 'لقد حصل خطأ في  إنشاء الفاتورة');
+                Session::flash('message' , trans('seles/create.creation_error_message'));
             }
             //  send a notification to tell the admin whech procuct Close to completion
             $this->sendProductNotification(10 , $products_id);
