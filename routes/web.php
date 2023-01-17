@@ -40,7 +40,7 @@ Route::get('/', function () {
     return view('auth.login');
 })->middleware(['guest']);
 
-
+ 
 // Route::middleware(['auth'])->group(function(){
 //     Route::resource('productCategories', ProductCategoriesController::class);
 
@@ -190,6 +190,7 @@ Route::group(
     
     Route::prefix('profile' )->group(function(){
         Route::get('/updateprofile' , [ProfileController::class , 'updateProfile'])->name('updateProfile');
+        Route::get('/logout' , [ProfileController::class , 'logout'])->name('logoutNow');
     });
     Route::resource('profile' , ProfileController::class);
 
