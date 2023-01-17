@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-تعديل الوثيقة
+{{ trans('purchases/edit.page_title') }}
 @stop
 @section('css')
 <!--- Internal Select2 css-->
@@ -13,7 +13,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="left-content">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">تعديل الوثيقة</h2>
+            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{ trans('purchases/edit.new_invoice_title') }}</h2>
         </div>
     </div>
 </div>
@@ -30,7 +30,7 @@
                         <div class="col-12">
                             <div class="form-group mg-b-0">
                                 <div class="main-content-label mg-b-5 mb-2">
-									المزود
+									{{ trans('purchases/create.supplier') }}
 								</div>
                                 <div class="parsley-select" id="slWrapper">
                                     <select class="form-control select2" name='supplier_id'  data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="chosse one" required="">
@@ -49,15 +49,12 @@
                                     </select>
                                     <div id="slErrorContainer"></div>
                                 </div>
-                                @error('product_unit')
-                                    <div class="alert alert-danger">product unit is importent</div>
-                                @enderror
                             </div>
                         </div>
                         <div class="col-12 mt-3">
                             <div class="form-group mg-b-0">
                                 <div class="main-content-label mg-b-5 mb-2">
-									المنتجات
+									{{ trans('purchases/create.products') }}
 								</div>
                                 <div class="parsley-select" id="slWrapper">
                                     <select class="form-control select2 product"   data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="chosse one">
@@ -75,9 +72,6 @@
                                     </select>
                                     <div id="slErrorContainer"></div>
                                 </div>
-                                @error('product_unit')
-                                    <div class="alert alert-danger">product unit is importent</div>
-                                @enderror
                             </div>
                         </div>
                     </div>
@@ -88,10 +82,10 @@
                         <table class="table table-bordered mg-b-0 text-md-nowrap">
                             <thead>
                                 <tr>
-                                    <th>إسم المنتج</th>
-                                    <th>الكمية المرادة</th>
-                                    <th>سعر المنتج</th>
-                                    <th>التحكم</th>
+                                    <th>{{ trans('purchases/create.product_name') }}</th>
+                                    <th>{{ trans('purchases/create.quantity') }}</th>
+                                    <th>{{ trans('purchases/create.sele_price') }}</th>
+                                    <th>{{ trans('purchases/create.controle') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -128,7 +122,7 @@
                         </table>
                     </div>
                     <div class="row">
-                        <div class="col-12 d-flex justify-content-end"><button class="col-2 btn btn-main-primary pd-x-20 mg-t-10" type="submit">حفظ</button></div>
+                        <div class="col-12 d-flex justify-content-end"><button class="col-2 btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{ trans('purchases/create.save_btn') }}</button></div>
                     </div>
                 </div>
             </div>

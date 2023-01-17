@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-المشتريات
+{{ trans('purchases/default.page_title') }}
 @stop
 
 @section('css')
@@ -21,21 +21,11 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="left-content">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">المشتريات !</h2>
+            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{ trans('purchases/default.purchases_title') }}</h2>
         </div>
     </div>
 </div>
-{{-- <div class="row row-sm mt-3">
 
-    <div class="col-lg-12">
-        <div class="card mg-b-20">
-            <div class="card-body d-flex p-3">
-                <h5 class="main-content-label mb-0 mg-t-8">المبيعات</h5>
-                <div class="mr-auto"><a class="d-block tx-20" data-placement="top" data-toggle="tooltip" title="فاتورة مبيعات جديدة" href="{{route('seles.create')}}"><i class="si si-plus text-muted"></i></a></div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 <!-- row opened -->
     <div class="row row-sm">
         <div class="col-xl-12">
@@ -44,7 +34,7 @@
                     <div class="d-flex justify-content-end">
                         <div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
                             <button class="btn btn-secondary btn-block">
-                                <a class="text-decoration-none text-light" href="{{route('purchases.create')}}">فاتورة مشتريات جديدة</a>
+                                <a class="text-decoration-none text-light" href="{{route('purchases.create')}}">{{ trans('purchases/default.add_new_purchases_invoice') }}</a>
                             </button>
                         </div>
                     </div>
@@ -54,15 +44,15 @@
                         <table class="table text-md-nowrap" id="example1">
                             <thead>
                                 <tr>
-                                    <th class="wd-12p ">رقم الفاتورة</th>
-                                    <th class="wd-12p ">المورد</th>
-                                    <th class="wd-10p ">التاريخ</th>
-                                    <th class="wd-12p ">أضيفة للمخزن</th>
-                                    <th class="wd-12p ">عدد الأصناف</th>
-                                    <th class="wd-14p ">إجمالي الفاتورة</th>
-                                    <th class="wd-12p ">حالة الدفع</th>
-                                    <th class="wd-12p ">المدفوع</th>
-                                    <th class="wd-10p ">التحكم</th>
+                                    <th class="wd-12p ">{{ trans('purchases/default.invoice_number') }}</th>
+                                    <th class="wd-12p ">{{ trans('purchases/default.supplier_name') }}</th>
+                                    <th class="wd-10p ">{{ trans('purchases/default.date') }}</th>
+                                    <th class="wd-12p ">{{ trans('purchases/default.added_to_store') }}</th>
+                                    <th class="wd-12p ">{{ trans('purchases/default.product_count') }}</th>
+                                    <th class="wd-14p ">{{ trans('purchases/default.invoice_total') }}</th>
+                                    <th class="wd-12p ">{{ trans('purchases/default.pyment_status') }}</th>
+                                    <th class="wd-12p ">{{ trans('purchases/default.paid_up') }}</th>
+                                    <th class="wd-10p ">{{ trans('purchases/default.controle') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -88,24 +78,24 @@
                                                     <ul class="dropdown-menu my-drop-down">
                                                         <!-- Dropdown menu links -->
                                                         @if (!$purchase->purchases_received)
-                                                            <li><a href="{{route('purchases.edit' , $purchase->id)}}"><i class="bi bi-eye-fill"></i>تعديل الوثيقة</a></li>
+                                                            <li><a href="{{route('purchases.edit' , $purchase->id)}}"><i class="las la-pencil-alt"></i>{{ trans('purchases/default.edit_invoice') }}</a></li>
                                                         @endif
                                                         @if (!$purchase->pyment_status)
-                                                            <li><a href="{{route('purchasesrecipets.create' , $purchase->id)}}"><i class="bi bi-eye-fill"></i>أداء الفاتورة</a></li>
+                                                            <li><a href="{{route('purchasesrecipets.create' , $purchase->id)}}"><i class="las la-hand-holding-usd"></i>{{ trans('purchases/default.pay_the_bill') }}</a></li>
                                                         @endif
-                                                        <li><a href="{{route('purchasesrecipets.show' ,$purchase->id)}}"><i class="bi bi-eye-fill"></i>المدفوع من الفاتورة</a></li>
-                                                        <li><a href="{{route('purchaseInvoiceDounload', $purchase->id)}}"><i class="bi bi-eye-fill"></i>تحميل الوصل</a></li>
-                                                        <li><a target='_blanck'href="{{route('viewPurchaseInvoice', $purchase->id)}}"><i class="bi bi-eye-fill"></i>رأية الوصل</a></li>
-                                                        <li><a href="{{route('sendPurchaseByMail', $purchase->id)}}"><i class="bi bi-eye-fill"></i> ارسال الفاتورة</a></li>
+                                                        <li><a href="{{route('purchasesrecipets.show' ,$purchase->id)}}"><i class="las la-newspaper"></i>{{ trans('purchases/default.paid_off_invoice') }}</a></li>
+                                                        <li><a href="{{route('purchaseInvoiceDounload', $purchase->id)}}"><i class="las la-arrow-alt-circle-down"></i>{{ trans('purchases/default.download') }}</a></li>
+                                                        <li><a target='_blanck'href="{{route('viewPurchaseInvoice', $purchase->id)}}"><i class="las la-eye"></i>{{ trans('purchases/default.see_the_invoice') }}</a></li>
+                                                        <li><a href="{{route('sendPurchaseByMail', $purchase->id)}}"><i class="las la-paper-plane"></i>  {{ trans('purchases/default.send_invoice') }}</a></li>
                                                         @if (!$purchase->purchases_received)
                                                             <li><a href="{{route('purchasesReceived', $purchase->id)}}" id='swal-parameter'>
-                                                                <i class="bi bi-eye-fill"  ></i> تم تسليم البضاعة</a></li>
+                                                                <i class="las la-truck"></i> {{ trans('purchases/default.goods_delivered') }}</a></li>
                                                             <li>
                                                                 <form action="{{route('purchases.destroy' , $purchase->id)}}" method="POST">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit"  onclick="return confirm('هل تريد حذف هذه الوثيقة')">
-                                                                        <i class="bi bi-eye-fill"></i>حذف الفاتورة
+                                                                        <i class="las la-trash-alt"></i>{{ trans('purchases/default.delete_invoice') }}
                                                                     </button>
                                                                 </form>
                                                             </li>
@@ -114,19 +104,7 @@
                                                 </div>
                                             </td>
 
-                                            {{-- <div class="col-sm-6 col-md-6 col-lg-3">
-                                                <div class="card custom-card text-center">
-                                                    <div class="card-body">
-                                                        <div>
-                                                            <h6 class="card-title mb-1">Warning alert</h6>
-                                                            <p class="text-muted card-sub-title">A warning message</p>
-                                                        </div>
-                                                        <div class="btn ripple btn-warning-gradient" id='swal-warning'>
-                                                            Click me !
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> --}}
+
 
                                         </tr>
                                     @endforeach
