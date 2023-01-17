@@ -11,6 +11,7 @@ use App\Models\Supplier;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -28,7 +29,10 @@ class PurchaseController extends Controller
     {
         // return fake()->randomFloat(2 , 500 , 3000);
         // $purchases = Purchase::all();
-        $purchases = Purchase::with('supplier' , 'details' , 'purchaseReciepts')->get();
+
+        $purchases = Cache::remember('purchases', 120, function () {
+            return Purchase::with('supplier' , 'details' , 'purchaseReciepts')->get();
+        });
         return View::make('purchases.default')
             ->with('purchases'  ,$purchases );
     }
@@ -40,8 +44,14 @@ class PurchaseController extends Controller
      */
     public function create()
     {
-        $suppliers  = Supplier::all();
-        $products   = Product::all();
+        $suppliers  = Cache::remember('suppliers' , 60 , function(){
+            return Supplier::all();
+        });
+
+
+        $products   = Cache::remember('products' , 60 , function(){
+            return Product::all();
+        });
         return View::make('purchases.create')
             ->with('suppliers' , $suppliers)
             ->with('products' , $products);
@@ -70,7 +80,7 @@ class PurchaseController extends Controller
             
 
             if(is_null($request->sele_quantities)){
-                Session::flash('message' , "يجب عليك إختيار منتجات لكي تتم عملية التعديل"  );
+                Session::flash('message' , trans('purchases/create.products_are_required') );
                 Session::flash('type' , 'error');
                 return back();
             }
@@ -89,9 +99,9 @@ class PurchaseController extends Controller
                     // i have created a trigger called --"decrease_quantity_when_sale_it"--
                     // to decrease the quantity automatically from stock 
                 }
-                Session::flash('message' , 'تم إنشاء الفاتورة  بنجاح');
+                Session::flash('message' ,trans('purchases/create.creation_success_message')  );
             }else{
-                Session::flash('message' , 'لقد حصل خطأ في  إنشاء الفاتورة');
+                Session::flash('message' , trans('purchases/create.creation_error_message') );
             }
         }
 
@@ -156,29 +166,11 @@ class PurchaseController extends Controller
             
 
             if(is_null($request->sele_quantities)){
-                Session::flash('message' , "يجب عليك إختيار منتجات لكي تتم عملية التعديل"  );
+                Session::flash('message' , trans('purchases/edit.products_are_required'));
                 Session::flash('type' , 'error');
                 return back();
             }
 
-            // // check if the quantity in stock is enough
-            // for($i = 0 ; $i < count($request->sele_quantities) ; $i++){
-
-            //     $product_id = $request->products_id[$i];
-            //     $product = Product::find($product_id);
-            //     $purchaseDetail =  PurchaseDetails::where('purchase_id' , $purchase->id)->where('product_id' , $product_id)->first();
-            //     // get the old quantity for checking quantity
-            //     // DB::table('')
-            //     // check if the quantity in stock is enough
-            //     if($request->sele_quantities[$i] -  $purchaseDetail->quantity >  $product->quatity){
-            //         Session::flash('message' , "المنتج  " . $product->name ." لا يوجد منه إلى ". $product->quatity."  عينة في المخزن "  );
-            //         Session::flash('type' , 'error');
-                    
-                    
-            //         // return $products;
-            //         return back();
-            //     }
-            // }
 
             
             if($purchase->save()){
@@ -236,10 +228,9 @@ class PurchaseController extends Controller
                 }
                 $purchase->save();
                 // ===================================================================
-                
-                Session::flash('message' , 'تم تعديل الوثيقة  بنجاح');
+                Session::flash('message' ,trans('purchases/create.editing_success_message')  );
             }else{
-                Session::flash('message' , 'لقد حصل خطأ في  تعديل الوثيقة');
+                Session::flash('message' , trans('purchases/create.editing_error_message') );
             }
         }
 
@@ -261,9 +252,9 @@ class PurchaseController extends Controller
         // SeleReciepts::where('sele_id' , $sele->id )->delete();
         // ===================================================
         if($purchase->delete()){
-            Session::flash('message' , 'لقد تم حذف الوثيقة بنجاح');
+            Session::flash('message' ,trans('purchases/create.deleting_success_message'));
         }else{
-            Session::flash('message' , 'لقد حصل خطأ في  حذف الوثيقة');
+            Session::flash('message' ,trans('purchases/create.deleting_error_message'));
         }
 
         return Redirect::to('purchases');
