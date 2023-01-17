@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-فاتورة مبيعات جديدة
+{{ trans('pricing/edit.page_title') }}
 @stop
 @section('css')
 <!--- Internal Select2 css-->
@@ -11,9 +11,9 @@
 @section('content')
 
 <div class="breadcrumb-header justify-content-between">
-    <div class="left-content">
+    <div class="left-content"> 
         <div>
-            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">فاتورة مبيعات جديدة</h2>
+            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{ trans('pricing/edit.new_pricing_title') }}</h2>
         </div>
     </div>
 </div>
@@ -29,7 +29,7 @@
                         <div class="col-12">
                             <div class="form-group mg-b-0">
                                 <div class="main-content-label mg-b-5 mb-2">
-									العميل
+									{{ trans('pricing/create.clients') }}
 								</div>
                                 <div class="parsley-select" id="slWrapper">
                                     <select class="form-control select2" name='client_id'  data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="chosse one" required="">
@@ -57,7 +57,7 @@
                         <div class="col-12 mt-3">
                             <div class="form-group mg-b-0">
                                 <div class="main-content-label mg-b-5 mb-2">
-									المنتجات
+									{{ trans('pricing/create.products') }}
 								</div>
                                 <div class="parsley-select" id="slWrapper">
                                     <select class="form-control select2 product"   data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="chosse one">
@@ -88,10 +88,10 @@
                         <table class="table table-bordered mg-b-0 text-md-nowrap">
                             <thead>
                                 <tr>
-                                    <th>إسم المنتج</th>
-                                    <th>الكمية المرادة</th>
-                                    <th>سعر المنتج</th>
-                                    <th>التحكم</th>
+                                    <th>{{ trans('pricing/create.product_name') }}</th>
+                                    <th>{{ trans('pricing/create.quantity') }}</th>
+                                    <th>{{ trans('pricing/create.sele_price') }}</th>
+                                    <th>{{ trans('pricing/create.controle') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -128,7 +128,7 @@
                         </table>
                     </div>
                     <div class="row">
-                        <div class="col-12 d-flex justify-content-end"><button class="col-2 btn btn-main-primary pd-x-20 mg-t-10" type="submit">حفظ</button></div>
+                        <div class="col-12 d-flex justify-content-end"><button class="col-2 btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{ trans('pricing/create.save_btn') }}</button></div>
                     </div>
                 </div>
             </div>

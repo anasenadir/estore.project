@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-التسعيرات
+{{ trans('pricing/default.page_title') }}
 @stop
 
 @section('css')
@@ -17,7 +17,7 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="left-content">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">تسعيرات المنتجات</h2>
+            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{ trans('pricing/default.pricing_title') }}</h2>
         </div>
     </div>
 </div>
@@ -31,7 +31,7 @@
 									{{-- <h4 class="card-title mg-b-0 text-end">SIMPLE TABLE</h4> --}}
                                     <div class="col-sm-6 col-md-3 mg-t-10 mg-sm-t-0">
                                         <button class="btn btn-secondary btn-block">
-                                            <a class="text-decoration-none text-light" href="{{route('pricing.create')}}">إنشاء تسعير جديد</a>
+                                            <a class="text-decoration-none text-light" href="{{route('pricing.create')}}">{{ trans('pricing/default.add_new_pricing_invoice') }}</a>
                                         </button>
                                     </div>
 								</div>
@@ -41,12 +41,12 @@
 									<table class="table text-md-nowrap" id="example1">
 										<thead>
 											<tr>
-												<th class="wd-15p border-bottom-0">رقم التسعير</th>
-												<th class="wd-20p border-bottom-0">العميل</th>
-												<th class="wd-17p border-bottom-0">التاريخ</th>
-												<th class="wd-15p border-bottom-0">عدد الأصناف</th>
-												<th class="wd-20p border-bottom-0">إجمالي الفاتورة</th>
-												<th class="wd-10p border-bottom-0">التحكم</th>
+												<th class="wd-15p border-bottom-0">{{ trans('pricing/default.pricing_number') }}</th>
+												<th class="wd-20p border-bottom-0">{{ trans('pricing/default.client_name') }}</th>
+												<th class="wd-17p border-bottom-0">{{ trans('pricing/default.date') }}</th>
+												<th class="wd-15p border-bottom-0">{{ trans('pricing/default.product_count') }}</th>
+												<th class="wd-20p border-bottom-0">{{ trans('pricing/default.pricing_total') }}</th>
+												<th class="wd-10p border-bottom-0">{{ trans('pricing/default.controle') }}</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -78,17 +78,17 @@
                                                                 <i class="bi bi-caret-left-square-fill dropdown-toggle-split control-btn" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                                                 <ul class="dropdown-menu my-drop-down">
                                                                     <!-- Dropdown menu links -->
-                                                                    <li><a href="{{route('pricing.edit' , $pricing->id)}}"><i class="bi bi-eye-fill"></i>تعديل التسعير</a></li>
-                                                                    <li><a href="{{route('viewPricingInvoice' , $pricing->id)}}" target="_blanck"><i class="bi bi-eye-fill"></i>عرض التسعير</a></li>
-                                                                    <li><a href="{{route('dounload' , $pricing->id)}}"><i class="bi bi-eye-fill"></i>طباعة التسعير</a></li>
-                                                                    <li><a href="{{route('convertToSeleContract' , $pricing->id)}}"><i class="bi bi-eye-fill"></i>تحويل  إلى عقد بيع</a></li>
-                                                                    <li><a href="{{route('sendMail' , $pricing->id)}}"><i class="bi bi-eye-fill"></i>ارسال عبر الايميل</a></li>
+                                                                    <li><a href="{{route('pricing.edit' , $pricing->id)}}"><i class="las la-pencil-alt"></i>{{ trans('pricing/default.edit_pricing') }} </a></li>
+                                                                    <li><a href="{{route('viewPricingInvoice' , $pricing->id)}}" target="_blanck"><i class="las la-eye"></i>{{ trans('pricing/default.see_the_pricing') }}</a></li>
+                                                                    <li><a href="{{route('dounload' , $pricing->id)}}"><i class="las la-arrow-alt-circle-down"></i>{{ trans('pricing/default.download') }}</a></li>
+                                                                    <li><a href="{{route('convertToSeleContract' , $pricing->id)}}"><i class="las la-recycle"></i>{{ trans('pricing/default.convert_to_sele_contract') }}</a></li>
+                                                                    <li><a href="{{route('sendMail' , $pricing->id)}}"><i class="las la-paper-plane"></i>{{ trans('pricing/default.send_pricing') }}</a></li>
                                                                     <li>
                                                                         <form action="{{route('pricing.destroy' , $pricing->id)}}" method="POST">
                                                                             @csrf
                                                                             @method('DELETE')
                                                                             <button type="submit"  onclick="return confirm('هل تريد حذف هذا التسعير')">
-                                                                                <i class="bi bi-eye-fill"></i>حذف التسعير
+                                                                                <i class="las la-trash-alt"></i>{{ trans('pricing/default.delete_pricing') }}
                                                                             </button>
                                                                         </form>
                                                                     </li>
