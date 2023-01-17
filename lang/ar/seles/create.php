@@ -17,16 +17,7 @@ return [
     'save_btn'          => 'حفظ',
 
 
-    // controle dropdown
-    'edit_invoice'      => 'تعديل الفاتورة',
-    'pay_the_bill'      => 'أداء الفاتورة',
-    'paid_off_invoice'  => 'المدفوع من الفاتورة',
-    'download'          => 'تحميل الوصل',
-    'see_the_invoice'   => 'رأية الوصل' , 
-    'send_invoice'      => 'ارسال الفاتورة',
-    'goods_delivered'   => 'تم تسليم البضاعة',
-    'delete_invoice'    => 'حذف الفاتورة',
-    'delete_invoice_message' => '',
+    
     // messages
     'products_are_required'     => 'يجب عليك إختيار منتجات لكي تتم عملية الشراء',
     'creation_success_message'  => 'تم إنشاء الفاتورة  بنجاح',
