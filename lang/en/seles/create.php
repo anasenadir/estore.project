@@ -14,8 +14,25 @@ return [
     'quantity'          => 'Quantity',
     'sele_price'        => 'Sele Price', 
     'controle'          => 'Controle',
-    'save_btn'         => 'Save',
+    'save_btn'          => 'Save',
 
+    // controle dropdown
+    'edit_invoice'      => 'Modify Invoice',
+    'pay_the_bill'      => 'Pay The Invoice',
+    'paid_off_invoice'  => 'Paid Off Invoice',
+    'download'          => 'Download Invoice',
+    'see_the_invoice'   => 'See The Invoice' , 
+    'send_invoice'      => 'Send By Email',
+    'goods_delivered'   => 'Goods Delivered',
+    'delete_invoice'    => 'Delete The Invoice',
+    'delete_invoice_message' => '',
+
+    // messages
+    'products_are_required'     => 'You must select products in order to complete the purchase',
+    'creation_success_message'  => 'The invoice has been created successfully',
+    'creation_error_message'    => 'An error has occurred creating the invoice',
+    'clents_error'              => 'You must choose the Client',
+    'products_error'            => 'You must select the products you want',
     //  errors messages
     'products_are_required' => 'You must select products in order for the craete invoice process to take place',
     'clents_error'      => 'You have to Choose a Client',
