@@ -9,6 +9,7 @@ use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -25,7 +26,9 @@ class PricingController extends Controller
     {
 
         // $pricings = Pricing::all();
-        $pricings = Pricing::with('prDetials', 'client' )->get();
+        $pricings  = Cache::remember('pricing' , 120 , function(){
+            return Pricing::with('prDetials', 'client' )->get();
+        });
 
         // return $pricings[0]->prDetials;
         return View::make('pricing.default')
@@ -39,8 +42,12 @@ class PricingController extends Controller
      */
     public function create()
     {
-        $products = Product::all();
-        $clients  = Client::all();
+        $products = Cache::remember('products' , 60 , function() {
+            return Product::all();
+        });
+        $clients  = Cache::remember('clients', 60 , function(){
+            return Client::all();
+        });
         return View::make('pricing.create')
             ->with('clients' , $clients)
             ->with('products' , $products);
@@ -65,7 +72,7 @@ class PricingController extends Controller
             $pricing->user_id           = Auth::user()->id;
             
             if(is_null($request->sele_quantities)){
-                Session::flash('message' , "يجب عليك إختيار منتجات لكي تتم عملية التعديل"  );
+                Session::flash('message' , trans('pricing/create.products_are_required') );
                 Session::flash('type' , 'error');
                 return back();
             }
@@ -84,9 +91,9 @@ class PricingController extends Controller
                     // i have created a trigger called --"decrease_quantity_when_sale_it"--
                     // to decrease the quantity automatically from stock 
                 }
-                Session::flash('message' , 'تم إنشاء التسعير  بنجاح');
+                Session::flash('message' , trans('pricing/create.creation_success_message'));
             }else{
-                Session::flash('message' , 'لقد حصل خطأ في  إنشاء التسعير');
+                Session::flash('message' , trans('pricing/create.creation_error_message'));
             }
         }
 
@@ -112,9 +119,13 @@ class PricingController extends Controller
      */
     public function edit(Pricing $pricing)
     {
-        $pricingDetails =  PricingDetails::where('pricing_id' , $pricing->id)->get();
-        $clients    = Client::all();
-        $products   = Product::all();
+        $pricingDetails = PricingDetails::where('pricing_id' , $pricing->id)->get();
+        $products = Cache::remember('products' , 60 , function() {
+            return Product::all();
+        });
+        $clients  = Cache::remember('clients', 60 , function(){
+            return Client::all();
+        });
 
         $productsID = [];
         foreach($pricingDetails as $item){
@@ -150,7 +161,7 @@ class PricingController extends Controller
 
             // if the admin doesn't select any product 
             if(is_null($request->sele_quantities)){
-                Session::flash('message' , "يجب عليك إختيار منتجات لكي تتم عملية التعديل"  );
+                Session::flash('message' , trans('pricing/edit.products_are_required') );
                 Session::flash('type' , 'error');
                 return back();
             }
@@ -168,9 +179,9 @@ class PricingController extends Controller
                     $pricingDetails->pricing_id     = $pricing->id ;
                     $pricingDetails->save();
                 }
-                Session::flash('message' , 'تم تعديل التسعير  بنجاح');
+                Session::flash('message' , trans('pricing/edit.editing_success_message'));
             }else{
-                Session::flash('message' , 'لقد حصل خطأ في  تعديل التسعير');
+                Session::flash('message' , trans('pricing/edit.editing_error_message'));
             }
         }
 
@@ -188,9 +199,9 @@ class PricingController extends Controller
         // i have created a trigger called --"delete_All_Data_Of_Sele"--
         // to delete all the related Data from the other tables
         if($pricing->delete()){
-            Session::flash('message' , 'لقد تم حذف التسعير بنجاح');
+            Session::flash('message' ,  trans('pricing/create.deleting_success_message'));
         }else{
-            Session::flash('message' , 'لقد حصل خطأ في  حذف التسعير');
+            Session::flash('message' ,  trans('pricing/create.deleting_error_message'));
         }
 
         return Redirect::to('pricing');
