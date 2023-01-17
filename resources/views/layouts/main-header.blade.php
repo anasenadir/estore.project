@@ -92,7 +92,10 @@
 									<a class="dropdown-item" href=""><i class="bx bxs-inbox"></i>Inbox</a>
 									<a class="dropdown-item" href=""><i class="bx bx-envelope"></i>Messages</a>
 									<a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
-									<a class="dropdown-item" href="{{ url('/' . $page='page-signin') }}"><i class="bx bx-log-out"></i> Sign Out</a>
+									<a class="dropdown-item" href="{{route('logoutNow')}}"><i class="bx bx-log-out"></i> Sign Out</a>
+									{{-- <form method="POST" action="{{ LaravelLocalization::getLocalizedURL(LaravelLocalization::getCurrentLocale()) . 'login' }}">
+										<button class="btn" type="submit"> logout</button>
+									</form> --}}
 								</div>
 							</div>
 						</div>
