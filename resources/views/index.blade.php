@@ -1,9 +1,11 @@
 @extends('layouts.master')
 @section('css')
 <!--  Owl-carousel css-->
-<link href="{{URL::asset('assets/plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet" />
+{{-- <link href="{{URL::asset('assets/plugins/owl-carousel/owl.carousel.css')}}" rel="stylesheet" /> --}}
 <!-- Maps css -->
-<link href="{{URL::asset('assets/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
+{{-- <link href="{{URL::asset('assets/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet"> --}}
+<link href="{{URL::asset('assets/css/custom/index.css')}}" rel="stylesheet">
+
 @endsection
 @section('page-header')
 
@@ -13,7 +15,7 @@
 					<div class="left-content">
 						<div>
 						  {{-- <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">Hi {{Str::ucfirst(auth()->user()->name) }}, welcome back!</h2> --}}
-						  <p class="mg-b-0">Sales monitoring dashboard template.</p>
+						  {{-- <p class="mg-b-0">Sales monitoring dashboard template.</p> --}}
 						</div>
 					</div>
 					{{-- <div class="main-dashboard-header-right">
@@ -161,11 +163,122 @@
 						</div>
 					</div>
 					<div class="col-lg-12 col-xl-5">
-						<div class="card card-dashboard-map-one">
-							<label class="main-content-label">Sales Revenue by Customers in USA</label>
-							<span class="d-block mg-b-20 text-muted tx-12">Sales Performance of all states in the United States</span>
-							<div class="">
-								<div class="vmap-wrapper ht-180" id="vmap2"></div>
+						<div class="card px-2">
+							 <div class="card-header bg-transparent pd-b-0 pd-t-20 bd-b-0">
+								<div class="d-flex justify-content-between">
+									<h4 class="card-title mb-0">Short Cuts</h4>
+									<i class="mdi mdi-dots-horizontal text-gray"></i>
+								</div>
+								{{-- <p class="tx-12 text-muted mb-0">Order Status and Tracking. Track your order from ship date to arrival. To begin, enter your order number.</p> --}}
+							</div>
+							{{--<div class="card-body">
+								<div class="row ">
+									<div class="col-4 shadow-sm  d-flex justify-content-center align-items-center ">
+										<a href="#" class="d-block py-4 px-2 border rounded  hover:cursor-pointer text-decoration-none text-dark tx-18">
+											إضافة مبيعة
+										</a>
+									</div>
+									<div class="col-4 shadow-sm  d-flex justify-content-center align-items-center ">
+										<a href="#" class="d-block py-4 px-2 border rounded  hover:cursor-pointer text-decoration-none text-dark tx-18">
+											إضافة مبيعة
+										</a>
+									</div>
+									<div class="col-4 shadow-sm  d-flex justify-content-center align-items-center ">
+										<a href="#" class="d-block py-4 px-2 border rounded  hover:cursor-pointer text-decoration-none text-dark tx-18">
+											إضافة مبيعة
+										</a>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-4 shadow-sm  d-flex justify-content-center align-items-center ">
+										<a href="#" class="d-block py-4 px-2 border rounded  hover:cursor-pointer text-decoration-none text-dark tx-18">
+											إضافة مبيعة
+										</a>
+									</div>
+									<div class="col-4 shadow-sm  d-flex justify-content-center align-items-center ">
+										<a href="#" class="d-block py-4 px-2 border rounded  hover:cursor-pointer text-decoration-none text-dark tx-18">
+											إضافة مبيعة
+										</a>
+									</div>
+									<div class="col-4 shadow-sm  d-flex justify-content-center align-items-center ">
+										<a href="#" class="d-block py-4 px-2 border rounded  hover:cursor-pointer text-decoration-none text-dark tx-18">
+											إضافة مبيعة
+										</a>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-4 shadow-sm  d-flex justify-content-center align-items-center ">
+										<a href="#" class="d-block py-4 px-2 border rounded  hover:cursor-pointer text-decoration-none text-dark tx-18">
+											إضافة مبيعة
+										</a>
+									</div>
+									<div class="col-4 shadow-sm  d-flex justify-content-center align-items-center ">
+										<a href="#" class="d-block py-4 px-2 border rounded  hover:cursor-pointer text-decoration-none text-dark tx-18">
+											إضافة مبيعة
+										</a>
+									</div>
+									<div class="col-4 shadow-sm  d-flex justify-content-center align-items-center ">
+										<a href="#" class="d-block py-4 px-2 border rounded  hover:cursor-pointer text-decoration-none text-dark tx-18">
+											إضافة مبيعة
+										</a>
+									</div>
+								</div>
+							</div> --}}
+							<div class="card-body">
+								<div class="row">
+									<a href='{{route('products.index')}}' class="short-cuts-link col py-3 border  mx-1 my-1  d-flex justify-content-center align-items-center flex-column">
+										{{-- <i class="las la-store tx-36"></i> --}}
+										<i class="fa-light fa-box-open-full tx-28"></i>
+										<span class="tx-14 mt-1">{{ trans('dashbord/index.products_store') }}</span>
+									</a>
+									<a href='{{route('clients.index')}}' class="short-cuts-link col py-3 border  mx-1 my-1  d-flex justify-content-center align-items-center flex-column">
+										{{-- <i class="las la-store tx-36"></i> --}}
+										{{-- <i class="fa-sharp fa-solid fa-handshake tx-28"></i> --}}
+										<i class="fa-light fa-handshake-simple tx-28"></i>
+										<span class="tx-14 mt-1">{{ trans('dashbord/index.clients') }}</span>
+									</a>
+									<a href='{{route('suppliers.index')}}' class="short-cuts-link col py-3 border  mx-1 my-1  d-flex justify-content-center align-items-center flex-column">
+										{{-- <i class="las la-store tx-36"></i> --}}
+										<i class="fa-light fa-users-gear tx-28"></i>
+										<span class="tx-14 mt-1">{{ trans('dashbord/index.suppliers') }}</span>
+									</a>
+								</div>
+								<div class="row">
+									<a href='{{route('products.index')}}' class="short-cuts-link col py-3 border  mx-1 my-1  d-flex justify-content-center align-items-center flex-column">
+										{{-- <i class="las la-store tx-36"></i> --}}
+										{{-- <i class="fa-solid fa-house"></i> --}}
+										<i class="fa-light fa-money-check-dollar tx-28"></i>
+										{{-- <i class="fa-light fa-money-check-dollar"></i> --}}
+										<span class="tx-14 mt-1">{{ trans('dashbord/index.expences') }}</span>
+									</a>
+									<a href='{{route('pricing.index')}}' class="short-cuts-link col py-3 border  mx-1 my-1  d-flex justify-content-center align-items-center flex-column">
+										{{-- <i class="las la-store tx-36"></i> --}}
+										<i class="fa-light fa-money-bill-transfer tx-28"></i>
+										<span class="tx-14 mt-1">{{ trans('dashbord/index.pricing') }}</span>
+									</a>
+									<a href='{{route('seles.index')}}' class="short-cuts-link col py-3 border  mx-1 my-1  d-flex justify-content-center align-items-center flex-column">
+										{{-- <i class="las la-store tx-36"></i> --}}
+										<i class="fa-light fa-chart-mixed tx-28"></i>
+										<span class="tx-14 mt-1">{{ trans('dashbord/index.sales') }}</span>
+									</a>
+								</div>
+								<div class="row">
+									<a href='{{route('products.index')}}' class="short-cuts-link col py-3 border  mx-1 my-1  d-flex justify-content-center align-items-center flex-column">
+										{{-- <i class="las la-store tx-36"></i> --}}
+										<i class="fa-light fa-people-roof tx-28"></i>
+										<span class="tx-14 mt-1">{{ trans('dashbord/index.employees') }}</span>
+									</a>
+									<a href='{{route('products.index')}}' class="short-cuts-link col py-3 border  mx-1 my-1  d-flex justify-content-center align-items-center flex-column">
+										{{-- <i class="las la-store tx-36"></i> --}}
+										<i class="fa-light fa-chart-user tx-28"></i>
+										<span class="tx-14 mt-1">{{ trans('dashbord/index.reports') }}</span>
+									</a>
+									<a href='{{route('purchases.index')}}' class="short-cuts-link col py-3 border  mx-1 my-1  d-flex justify-content-center align-items-center flex-column">
+										{{-- <i class="las la-store tx-36"></i> --}}
+										<i class="fa-light fa-cart-shopping tx-28"></i>
+										<span class="tx-14 mt-1">{{ trans('dashbord/index.purchases') }}</span>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -173,7 +286,7 @@
 				<!-- row closed -->
 
 				<!-- row opened -->
-				<div class="row row-sm">
+				{{-- <div class="row row-sm">
 					<div class="col-xl-4 col-md-12 col-lg-12">
 						<div class="card">
 							<div class="card-header pb-1">
@@ -347,12 +460,12 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> --}}
 				<!-- row close -->
 
 				<!-- row opened -->
 				<div class="row row-sm row-deck">
-					<div class="col-md-12 col-lg-4 col-xl-4">
+					{{-- <div class="col-md-12 col-lg-4 col-xl-4">
 						<div class="card card-dashboard-eight pb-2">
 							<h6 class="card-title">Your Top Countries</h6><span class="d-block mg-b-10 text-muted tx-12">Sales performance revenue based by country</span>
 							<div class="list-group">
@@ -382,14 +495,14 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-12 col-lg-8 col-xl-8">
+					</div> --}}
+					<div class="col-md-12">
 						<div class="card card-table-two">
 							<div class="d-flex justify-content-between">
-								<h4 class="card-title mb-1">Your Most Recent Earnings</h4>
+								<h4 class="card-title mb-1">Sales Of Today</h4>
 								<i class="mdi mdi-dots-horizontal text-gray"></i>
 							</div>
-							<span class="tx-12 tx-muted mb-3 ">This is your most recent earnings for today's date.</span>
+							<span class="tx-12 tx-muted mb-3 ">This is the sales of today.</span>
 							<div class="table-responsive country-table">
 								<table class="table table-striped table-bordered mb-0 text-sm-nowrap text-lg-nowrap text-xl-nowrap">
 									<thead>
@@ -457,9 +570,9 @@
 <!--Internal Apexchart js-->
 <script src="{{URL::asset('assets/js/apexcharts.js')}}"></script>
 <!-- Internal Map -->
-<script src="{{URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+{{-- <script src="{{URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
 <script src="{{URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
-<script src="{{URL::asset('assets/js/modal-popup.js')}}"></script>
+<script src="{{URL::asset('assets/js/modal-popup.js')}}"></script> --}}
 <!--Internal  index js -->
 <script src="{{URL::asset('assets/js/index.js')}}"></script>
 <script src="{{URL::asset('assets/js/jquery.vmap.sampledata.js')}}"></script>	
