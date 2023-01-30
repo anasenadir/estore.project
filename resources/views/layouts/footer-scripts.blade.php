@@ -6,6 +6,7 @@
 <script src="{{URL::asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- Ionicons js -->
 <script src="{{URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
+<scrip src="{{ asset('assets/frontend/js/fontawesome/all.min.js') }}"></scrip>
 <!-- Moment js -->
 <script src="{{URL::asset('assets/plugins/moment/moment.js')}}"></script>
 
