@@ -12,9 +12,9 @@
 							<a class="open-toggle" href="#"><i class="header-icon fe fe-align-left" ></i></a>
 							<a class="close-toggle" href="#"><i class="header-icons fe fe-x"></i></a>
 						</div>
-						<div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
+						{{-- <div class="main-header-center mr-3 d-sm-none d-md-none d-lg-block">
 							<input class="form-control" placeholder="Search for anything..." type="search"> <button class="btn"><i class="fas fa-search d-none d-md-block"></i></button>
-						</div>
+						</div> --}}
 					</div>
 					<div class="main-header-right">
 						<div class="nav nav-item  navbar-nav-right ml-auto align-items-center">
@@ -34,6 +34,7 @@
 									</a>
 								@endif
 							@endforeach
+
 							{{-- end the language selector --}}
 							<div class="dropdown nav-item main-header-notification">
 								<a class="new nav-link" href="#">
