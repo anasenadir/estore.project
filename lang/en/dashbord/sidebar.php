@@ -6,9 +6,9 @@ return [
 
     // transactions =======================================
     'transactions_title' => 'Transactions',
-    'seles' => 'Seles',
-    'create_sele_invoice' => 'Create Sele Invoice',
-    'view_seles' => 'View All Seles', 
+    'seles' => 'Sales',
+    'create_sele_invoice' => 'Create Sale Invoice',
+    'view_seles' => 'View All Sales', 
 
     // purchases
     'purchases' => 'Purchases',
