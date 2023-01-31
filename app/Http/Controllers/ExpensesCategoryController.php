@@ -16,9 +16,7 @@ class ExpensesCategoryController extends Controller
      */
     public function index()
     {
-        $expensesCategories = Cache::remember('expensesCategories' , 120, function(){
-            return  ExpensesCategory::all();
-        });
+        $expensesCategories = ExpensesCategory::all();
         return view('expensesCategories.default')->with('expensesCategories' , $expensesCategories);
     }
 
@@ -79,10 +77,7 @@ class ExpensesCategoryController extends Controller
      */
     public function edit(ExpensesCategory $expensesCategory)
     {
-        return $expensesCategory;
-
-
-        return view('')
+        return view('expensesCategories.edit') -> with('expensesCategory' , $expensesCategory);
     }
 
     /**
@@ -94,7 +89,21 @@ class ExpensesCategoryController extends Controller
      */
     public function update(Request $request, ExpensesCategory $expensesCategory)
     {
-        //
+        if(session('_token') == $request->post('_token') ){
+            $request->validate([
+                    'E_category_name' => 'required|string',
+                    'E_category_minimum_amount' => 'required|numeric'
+                ]
+            );  
+            $expensesCategory->name             = $request->E_category_name;
+            $expensesCategory->minimum_amount   = $request->E_category_minimum_amount;
+            if($expensesCategory->save()){
+                Session::flash('message' , trans('expensesCategories/edit.editing_success_message'));
+            }else{
+                Session::flash('message' , trans('expensesCategories/edit.editing_error_message'));
+            } 
+        }
+        return redirect('expensesCategories');
     }
 
     /**
@@ -105,6 +114,11 @@ class ExpensesCategoryController extends Controller
      */
     public function destroy(ExpensesCategory $expensesCategory)
     {
-        //
+        if($expensesCategory->delete()){
+            Session::flash('message' , trans('expensesCategories/default.deleting_success_message'));
+        }else{
+            Session::flash('message' , trans('expensesCategories/default.deleting_error_message'));
+        } 
+        return redirect('expensesCategories');
     }
 }
