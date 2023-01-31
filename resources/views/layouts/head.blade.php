@@ -5,26 +5,8 @@
 <!-- Icons css -->
 <link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet">
 {{-- fontawsome --}}
-    <link rel="stylesheet" href="{{asset("assets/frontend/css/fontawsome/all.min.css")}}">
-    {{-- <link
-      rel="stylesheet"
-      data-purpose="Layout StyleSheet"
-      title="Web Awesome"
-
-      href="/css/app-wa-0b825fee9ab73841eef6e87ad8809c51.css?vsn=d"
-    > --}}
-
-      <link
-        rel="stylesheet"
-
-        href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css"
-      >
-
-      <link
-        rel="stylesheet"
-
-        href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css"
-      >
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/all.css" />
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.1/css/sharp-solid.css" />
 
 <!--  Custom Scroll bar-->
 <link href="{{URL::asset('assets/plugins/mscrollbar/jquery.mCustomScrollbar.css')}}" rel="stylesheet"/>
