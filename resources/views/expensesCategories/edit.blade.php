@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-{{ trans('pricing/edit.page_title') }}
+{{ trans('expensesCategories/edit.page_title') }}
 @stop
 @section('css')
 <!--- Internal Select2 css-->
@@ -11,130 +11,43 @@
 @section('content')
 
 <div class="breadcrumb-header justify-content-between">
-    <div class="left-content"> 
+    <div class="left-content">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{ trans('pricing/edit.new_pricing_title') }}</h2>
+            <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">{{ trans('expensesCategories/edit.E_category_title') }}</h2>
         </div>
     </div>
 </div>
 <!-- row opened -->
-    <form action='{{route('pricing.update' , $pricing->id)}}' method='POST' class="row">
+    <form action='{{route('expensesCategories.update' , $expensesCategory->id)}}' method='POST' class="row">
         @csrf
-        @method('PATCH')
+        @method('PUT')
         <div class="col-lg-12 col-md-12">
-            <div class="card">
-                <div class="card-body">
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group mg-b-0">
-                                <div class="main-content-label mg-b-5 mb-2">
-									{{ trans('pricing/create.clients') }}
-								</div>
-                                <div class="parsley-select" id="slWrapper">
-                                    <select class="form-control select2" name='client_id'  data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="chosse one" required="">
-                                        <option label="chosse one">
-                                        </option>
-                                        @if (isset($clients))
-                                            @foreach ($clients as $client)
-                                                <option value="{{$client->id}}"
-                                                    @if ($client->id == $pricing->client_id )
-                                                        selected
-                                                    @endif
-                                                    >
-                                                    {{$client->name}}
-                                                </option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                    <div id="slErrorContainer"></div>
+            <div class="card ">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group mg-b-0">
+                                    <label class="form-label">{{ trans('expensesCategories/edit.E_category_name') }}: <span class="tx-danger">*</span></label>
+                                    <input class="form-control" name="E_category_name" placeholder="{{ trans('expensesCategories/edit.E_category_name') }}" value="{{$expensesCategory->name}}"  maxlength='40' required="" type="text">
                                 </div>
-                                @error('product_unit')
-                                    <div class="alert alert-danger">product unit is importent</div>
+                                @error('E_category_name')
+                                    <div class="alert alert-danger">You must choose the name of the Expense Category</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group mg-b-0">
+                                    <label class="form-label">{{ trans('expensesCategories/edit.E_category_name') }}: <span class="tx-danger">*</span></label>
+                                    <input class="form-control" name="E_category_minimum_amount" placeholder="{{ trans('expensesCategories/edit.E_category_minimum_amount') }}" value="{{$expensesCategory->minimum_amount}}"    min='0' required step="0.1" type="number">
+                                </div>
+                                @error('E_category_minimum_amount')
+                                    <div class="alert alert-danger">You must declare a Minimum Amount</div>
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-12 mt-3">
-                            <div class="form-group mg-b-0">
-                                <div class="main-content-label mg-b-5 mb-2">
-									{{ trans('pricing/create.products') }}
-								</div>
-                                <div class="parsley-select" id="slWrapper">
-                                    <select class="form-control select2 product"   data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="chosse one">
-                                        <option label="chosse one">
-                                        </option>
-                                        @if (isset($products))
-                                            @foreach ($products as $product)
-                                                @if (!in_array( $product->id ,$productsID))
-                                                    <option value="{{$product->id}}" data-price='{{$product->sell_price}}' data-name='{{$product->name}}'>
-                                                        {{$product->name}}
-                                                    </option>
-                                                @endif
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                    <div id="slErrorContainer"></div>
-                                </div>
-                                @error('product_unit')
-                                    <div class="alert alert-danger">product unit is importent</div>
-                                @enderror
-                            </div>
-                        </div>
+                        <div class="d-flex justify-content-end"><button class="col-2 btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{ trans('expensesCategories/edit.save_btn') }}</button></div>
                     </div>
-                    {{-- <div class="row my-2">
-                    </div> --}}
-                    <div class="btn btn-primary mt-2 add">click</div>
-                    <div class="table-responsive mt-2">
-                        <table class="table table-bordered mg-b-0 text-md-nowrap">
-                            <thead>
-                                <tr>
-                                    <th>{{ trans('pricing/create.product_name') }}</th>
-                                    <th>{{ trans('pricing/create.quantity') }}</th>
-                                    <th>{{ trans('pricing/create.sele_price') }}</th>
-                                    <th>{{ trans('pricing/create.controle') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{-- @if (isset($request))
-
-                                   
-                                @endif --}}
-
-                                @if (isset($request) && !is_null($request->products_id))
-                                    @foreach ($request->products_id as $index=> $item)
-                                        <tr>
-                                            <td><input class='form-control ' type="test" name='products_names[]'  readonly  value='{{$request->products_names[$index]}}' min='0' step='1'/></td>
-                                            <td class="d-none"><input class='form-control' type="test" hidden name='products_id[]' value='{{$item}}' min='0' step='1'/></td>
-                                            <td><input class='form-control' type="test" name='sele_quantities[]' value='{{$request->sele_quantities[$index]}}' min='0' step='1'/></td>
-                                            <td><input class='form-control ' type="test" readonly name='expene_prices[]' value='{{$request->expene_prices[$index]}}'/></td>
-                                            <td class="mx-auto d-flex justify-content-center align-items-center" style="height: 65px; cursor:pointer"><div class="badge badge-danger" onclick="removeItem(this)">delete</div></td>
-                                        </tr>
-                                    @endforeach
-                                @else
-                                    @if (isset($pricingDetails))
-                                    @foreach ($pricingDetails as $pricingDetail)
-                                        <tr>
-                                            <td><input class='form-control ' type="test" readonly  name='products_names[]'  value='{{$pricingDetail->product->name}}' min='0' step='1'/></td>
-                                            <td class="d-none"><input class='form-control ' type="test" hidden name='products_id[]' value='{{$pricingDetail->product_id}}' min='0' step='1'/></td>
-                                            <td><input class='form-control ' type="test" name='sele_quantities[]' value='{{$pricingDetail->quantity}}' min='0' step='1'/></td>
-                                            <td><input class='form-control ' type="test" readonly name='expene_prices[]' value='{{$pricingDetail->product_price}}'/></td>
-                                            <td class="mx-auto d-flex justify-content-center align-items-center" style="height: 65px; cursor:pointer"><div class="badge badge-danger" onclick="removeItem(this)">delete</div></td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                @endif
-                                
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-end"><button class="col-2 btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{ trans('pricing/create.save_btn') }}</button></div>
-                    </div>
-                </div>
             </div>
         </div>
-        {{-- <div class="row">
-        </div> --}}
     </form>
 @endsection
 
@@ -143,7 +56,6 @@
 
 
 @section('js')
-<!-- Internal Data tables -->
 <script src="{{URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js')}}"></script>
 <!--Internal  Datatable js -->
 {{-- <script src="{{URL::asset('assets/js/table-data.js')}}"></script> --}}

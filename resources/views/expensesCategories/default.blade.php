@@ -68,7 +68,7 @@
                                                                         <form action="{{route('expensesCategories.destroy' , $expensesCategory->id)}}" method="POST">
                                                                             @csrf
                                                                             @method('DELETE')
-                                                                            <button type="submit"  onclick="return confirm('هل تريد حذف هذا التسعير')">
+                                                                            <button type="submit"  onclick="return confirm('هل تريد حذف هذا المصروف')">
                                                                                 <i class="las la-trash-alt"></i>{{ trans('expensesCategories/default.delete_E_Category') }}
                                                                             </button>
                                                                         </form>
