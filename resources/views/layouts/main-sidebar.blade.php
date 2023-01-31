@@ -110,8 +110,8 @@
 							<span class="side-menu__label">{{ trans('dashbord/sidebar.expenses_categories') }}</span><i class="angle fe fe-chevron-down"></i>
 						</a>
 						<ul class="slide-menu">
-							<li><a class="slide-item" href="{{ url('/' . $page='product-details') }}">{{ trans('dashbord/sidebar.create_expense_category') }}</a></li>
-							<li><a class="slide-item" href="{{ url('/' . $page='products') }}">{{ trans('dashbord/sidebar.view_expenses_categories') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='expensesCategories/create') }}">{{ trans('dashbord/sidebar.create_expense_category') }}</a></li>
+							<li><a class="slide-item" href="{{ url('/' . $page='expensesCategories') }}">{{ trans('dashbord/sidebar.view_expenses_categories') }}</a></li>
 						</ul>
 					</li>
 					<li class="slide">
