@@ -27,7 +27,5 @@ return [
     // 'clents_error'              => 'يجب عليك إختيار الزبون ',
     // 'products_error'            => 'يجب عليك تحديد المنتجات التي تريد',
 
-    // deleting messages
-    'deleting_success_message'  => 'لقد تم حذف التسعير بنجاح', 
-    'deleting_error_message'    => 'لقد حصل خطأ في  حذف التسعير' ,
+    
 ];

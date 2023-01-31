@@ -15,9 +15,12 @@ return [
 
 
 
-
-
     
+    // deleting messages
+    'deleting_success_message'  => 'لقد تم حذف المصروف بنجاح', 
+    'deleting_error_message'    => 'لقد حصل خطأ في  حذف المصروف' ,
+
+
     'download'                          => 'تحميل الوصل',
     'convert_to_sele_contract'          => 'تحويل  إلى عقد بيع',
     'see_the_expenses_category'         => 'رأية التسعير' , 

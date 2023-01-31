@@ -1,14 +1,26 @@
 <?php
 
 return [
-    'page_title'        => 'تعديل التسعير',
-    'new_pricing_title' => 'تعديل التسعير',
+    'page_title'                    => 'تعديل المصروف',
+    'E_category_title'              => 'تعديل المصروف',
 
-    //  errors messages
-    'products_are_required' => 'يجب عليك إختيار منتجات لكي تتم عملية التعديل', 
-    'editing_success_message' => 'تم تعديل الفاتورة  بنجاح',
-    'editing_error_message' => 'لقد حصل خطأ اثناء  تعديل الفاتورة',
-    'clents_error'      => 'يجب عليك إختيار الزبون ',
-    'products_error'    => 'يجب عليك تحديد المنتجات التي تريد',
-    'edit_error'        => 'يجب عليك إختيار منتجات لكي تتم عملية التعديل.'
+    'E_category_name'               => 'اسم المصروف',
+    'E_category_minimum_amount'     => 'المبلغ الأدنى للمصروف',
+
+
+    'clients'           => 'العميل',
+    'products'          => 'المنتجات',
+    'product_name'      => 'إسم المنتج',
+    'quantity'          => 'الكمية المرادة',
+    'sele_price'        => 'سعر المنتج', 
+    'controle'          => 'التحكم',
+    'save_btn'          => 'حفظ',
+
+
+    'editing_success_message'  => 'تم تعديل الصنف بنجاح',
+    'editing_error_message'    => 'لقد حصل خطأ في تعديل الصنف',
+
+    // 'clents_error'              => 'يجب عليك إختيار الزبون ',
+    // 'products_error'            => 'يجب عليك تحديد المنتجات التي تريد',
+
 ];
