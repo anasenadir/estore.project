@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ExpensesCategoryController;
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ProductCategoriesController;
 use App\Http\Controllers\ProductController;
@@ -13,10 +14,9 @@ use App\Http\Controllers\PurchaseRecieptsController;
 use App\Http\Controllers\SeleController;
 use App\Http\Controllers\SeleRecieptsController;
 use App\Http\Controllers\SupplierController;
-use App\Models\ProductCategory;
-use App\Models\SeleReciepts;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
@@ -40,7 +40,7 @@ Route::get('/', function () {
     return view('auth.login');
 })->middleware(['guest']);
 
- 
+
 // Route::middleware(['auth'])->group(function(){
 //     Route::resource('productCategories', ProductCategoriesController::class);
 
@@ -195,7 +195,7 @@ Route::group(
     Route::resource('profile' , ProfileController::class);
 
 
-
+    Route::resource('expensesCategories' , ExpensesCategoryController::class);
 
 
     Route::get('/{page}' ,[ AdminController::class , 'index']);
